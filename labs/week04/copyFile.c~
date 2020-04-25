@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+ char flipChar(char c){
+    if (’a’ <= c && c <= ’z’){
+      c = 'a'- c +'z';
+    }
+    if (’A’ <= c && c <= ’Z’){
+      c = 'A'-c + 'Z';
+    }
+    if (’0’ <= c && c <= ’9’){
+      c= '0' - c + '9';
+    }
+    return c;
+  }
+
+int main(int argc, char* argv[])
+{
+  char c;
+  FILE *from;
+  FILE *go;
+  
+  from = fopen(argv[1], "r");
+  if (from == NULL)
+  {
+    perror(argv[1]);
+    exit(1);
+  }
+
+  go = fopen(argv[2], "w");
+  if (go == NULL)
+    {
+
+      perror(argv[2]);
+      exit(1);
+    }
+  
+    
+  /* file exists, so start reading */
+  while ((c = getc(from)) != EOF)
+    putc(c, go);
+
+  fclose(from);
+  fclose(go);
+
+  exit(0);
+
+  
+   
+    
+}
